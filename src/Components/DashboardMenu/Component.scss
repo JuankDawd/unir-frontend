@@ -1,0 +1,23 @@
+.input {
+    border-radius: 4px;
+    margin: 10px 0;
+
+    &-error {
+        border-color: red;
+    }
+
+    &:focus {
+        color: black;
+        background-color: white;
+        border-color: green !important;
+    }
+}
+
+.label-title {
+    color: white;
+    text-align: start;
+}
+
+.error-msg {
+    margin: 10px 0;
+}

@@ -1,8 +1,6 @@
 import './Component.scss';
 
-// eslint-disable-next-line no-unused-vars
-import React, { Fragment } from 'react';
-
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 export function Card({ children }) {

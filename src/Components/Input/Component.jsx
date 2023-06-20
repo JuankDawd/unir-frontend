@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import './Component.scss';
 
 import { Fragment } from 'react';

@@ -1,38 +1,28 @@
-import { getusername, logout } from '@services/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
-
 import { Card } from '@components/Card/Component';
-import { Fragment } from 'react';
 import { PATHS } from '@utils/Routes';
+import { PageWrapper } from '@components/PageWrapper/Component';
+import { getusername } from '@services/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const username = useSelector(getusername);
 
-	const sessionHandler = () => {
-		dispatch(logout());
-	};
+	const username = useSelector(getusername);
 
 	const goTo = (path) => {
 		navigate(path);
 	};
 
 	return (
-		<Fragment>
-			<h1>{'Home'}</h1>
+		<PageWrapper title="Home">
 			{username === '' ? 'User not logged in' : `Welcome Home ${username}`}
-			{username ? (
-				<Card>
-					<button onClick={() => sessionHandler()}>LogOut</button>
-				</Card>
-			) : null}
+
 			<Card>
 				<button onClick={() => goTo(PATHS.LOGIN)}>LogIn</button>
 				<button onClick={() => goTo(PATHS.REGISTER)}>Register</button>
 			</Card>
-		</Fragment>
+		</PageWrapper>
 	);
 };
 
