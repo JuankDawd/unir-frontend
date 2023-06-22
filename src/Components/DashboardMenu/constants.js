@@ -49,8 +49,8 @@ export const Sections = [
 		title: 'Gestión',
 		items: [
 			{
-				title: 'Clientes',
-				path: '/client',
+				title: 'Customer',
+				path: '/customer',
 				icon: manOutline,
 				subItems: [
 					{

@@ -49,7 +49,7 @@ export function PageWrapper({ children, title }) {
 					<IonHeader>
 						<IonToolbar color={'secondary'}>
 							<IonButtons slot="start">
-								<IonMenuButton></IonMenuButton>
+								<IonMenuButton />
 							</IonButtons>
 							<IonTitle>{title}</IonTitle>
 							<IonButtons slot="end">

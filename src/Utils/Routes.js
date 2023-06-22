@@ -1,4 +1,4 @@
-import { Client } from '@pages/Client';
+import Customer from '@pages/Customer/Customer';
 import { Home } from '@pages/Home';
 import { Login } from '@pages/LogIn';
 import { Logistic } from '@pages/Logistic';
@@ -16,10 +16,9 @@ export const PATHS = {
 	LOGIN: '/login',
 	OVERVIEW: '/overview',
 	LOGISTIC: '/logistic',
-	CLIENT: '/client',
-	CLIENT_LIST: '/client',
+	CUSTOMER: '/customer',
 	PRODUCT: '/product',
-	CLIENT_DETAILS: '/client/edit',
+	CLIENT_DETAILS: '/customer/edit',
 	PRODUCT_LIST: '/product',
 	PRODUCT_CREATE: '/product/create',
 	ORDER: '/order',
@@ -57,9 +56,9 @@ export const ROUTES = [
 	},
 
 	{
-		title: 'client',
-		path: PATHS.CLIENT,
-		component: Client,
+		title: 'customer',
+		path: PATHS.CUSTOMER,
+		component: Customer,
 	},
 	{
 		title: 'listClient',
