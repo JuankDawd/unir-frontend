@@ -1,0 +1,41 @@
+.title {
+    width: 100%;
+    text-align: center;
+
+    font-size: large;
+    font-weight: bold;
+
+    &.bueno {
+        color: green;
+    }
+
+    &.regular {
+        color: orange;
+    }
+
+    &.malo {
+        color: red;
+    }
+}
+
+
+
+.amount {
+    width: 100%;
+    text-align: center;
+
+    font-size: medium;
+    font-weight: bold;
+}
+
+.message {
+    width: 100%;
+    text-align: center;
+}
+
+
+.container {
+    display: flex;
+    align-items: center;
+
+}

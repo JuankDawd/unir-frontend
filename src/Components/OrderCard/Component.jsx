@@ -4,7 +4,7 @@ import { IonCard, IonCardContent, IonCol, IonGrid, IonIcon, IonLabel, IonRow } f
 
 import PropTypes from 'prop-types';
 
-export function StyledCard({ Icon, Amount, Message }) {
+export function OrderCard({ Icon, Amount, Message }) {
 	return (
 		<IonCard>
 			<IonCardContent>
@@ -30,7 +30,7 @@ export function StyledCard({ Icon, Amount, Message }) {
 	);
 }
 
-StyledCard.propTypes = {
+OrderCard.propTypes = {
 	Icon: PropTypes.string.isRequired,
 	Amount: PropTypes.number,
 	Message: PropTypes.string.isRequired,
