@@ -1,31 +1,51 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid, IonRow } from '@ionic/react';
+import { OrderCards, ReviewCards } from './Constants';
 
-import { Fragment } from 'react';
+import { OrderCard } from '@components/OrderCard/Component';
 import { PageWrapper } from '@components/PageWrapper/Component';
-import { StyledCard } from '@components/StyledCard/Component';
-import { StyledCards } from './Constants';
+import { ReviewCard } from '@components/ReviewCard/Component';
 
 const Logistic = () => {
 	return (
 		<PageWrapper title="Logistica">
-			<Fragment>
-				<IonGrid>
-					<IonRow>
-						{StyledCards.map((card, key) => {
-							return (
-								<IonCol key={key} size="3" sizeXs="12" sizeMd="12" sizeSm="12" sizeLg="6" sizeXl="3">
-									<StyledCard Amount={card.Amount} Message={card.Message} Icon={card.Icon} />
-								</IonCol>
-							);
-						})}
-					</IonRow>
-				</IonGrid>
-			</Fragment>
+			<IonGrid className="no-padding">
+				<IonRow>
+					{OrderCards.map((card, key) => {
+						return (
+							<IonCol
+								key={key}
+								size="3"
+								sizeXs="12"
+								sizeMd="12"
+								sizeSm="12"
+								sizeLg="6"
+								sizeXl="3"
+								className="no-padding"
+							>
+								<OrderCard Amount={card.Amount} Message={card.Message} Icon={card.Icon} />
+							</IonCol>
+						);
+					})}
+				</IonRow>
+			</IonGrid>
+
 			<IonCard>
 				<IonCardHeader className="logistic-current_balance">
 					<IonCardTitle>Reseñas de Clientes</IonCardTitle>
 				</IonCardHeader>
-				<IonCardContent>Reseñas</IonCardContent>
+				<IonCardContent>
+					<IonGrid>
+						<IonRow>
+							{ReviewCards.map((card, key) => {
+								return (
+									<IonCol key={key} sizeXs="12" sizeMd="12" sizeSm="12" sizeLg="12" sizeXl="4">
+										<ReviewCard Amount={card.Amount} Message={card.Message} Title={card.Title} />
+									</IonCol>
+								);
+							})}
+						</IonRow>
+					</IonGrid>
+				</IonCardContent>
 			</IonCard>
 		</PageWrapper>
 	);

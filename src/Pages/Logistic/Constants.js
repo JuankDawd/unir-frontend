@@ -1,6 +1,6 @@
 import { informationCircle, timeOutline, warningOutline } from 'ionicons/icons';
 
-export const StyledCards = [
+export const OrderCards = [
 	{
 		Amount: 38,
 		Message: 'Pedidos actuales',
@@ -20,5 +20,23 @@ export const StyledCards = [
 		Amount: 1,
 		Message: 'Llegada de mercaderia',
 		Icon: timeOutline,
+	},
+];
+
+export const ReviewCards = [
+	{
+		Title: 'Bueno',
+		Amount: 85,
+		Message: 'Excelente servicio',
+	},
+	{
+		Title: 'Regular',
+		Amount: 10,
+		Message: 'Buen servicio',
+	},
+	{
+		Title: 'Malo',
+		Amount: 5,
+		Message: 'Problemas',
 	},
 ];
