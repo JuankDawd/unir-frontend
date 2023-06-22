@@ -1,4 +1,4 @@
-import { Client } from '@pages/Client';
+import Customer from '@pages/Customer/Customer';
 import { Home } from '@pages/Home';
 import { Login } from '@pages/LogIn';
 import { Logistic } from '@pages/Logistic';
@@ -14,7 +14,7 @@ export const PATHS = {
 	LOGIN: '/login',
 	OVERVIEW: '/overview',
 	LOGISTIC: '/logistic',
-	CLIENT: '/client',
+	CUSTOMER: '/customer',
 	PRODUCT: '/product',
 	ORDER: '/order',
 };
@@ -50,9 +50,9 @@ export const ROUTES = [
 	},
 
 	{
-		title: 'client',
-		path: PATHS.CLIENT,
-		component: Client,
+		title: 'customer',
+		path: PATHS.CUSTOMER,
+		component: Customer,
 	},
 
 	{

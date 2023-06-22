@@ -1,7 +1,7 @@
 import { IonLabel } from '@ionic/react';
 import { PageWrapper } from '@components/PageWrapper/Component';
 
-const Client = () => {
+const Customer = () => {
 	return (
 		<PageWrapper title="Home">
 			<IonLabel>Clientes</IonLabel>
@@ -9,4 +9,4 @@ const Client = () => {
 	);
 };
 
-export default Client;
+export default Customer;

@@ -20,8 +20,8 @@ export const Sections = [
 		title: 'Gestion',
 		items: [
 			{
-				title: 'Clientes',
-				path: '/client',
+				title: 'Customer',
+				path: '/customer',
 				icon: manOutline,
 			},
 			{
