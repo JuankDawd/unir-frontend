@@ -1,39 +1,31 @@
-import { bagOutline, cartOutline, manOutline, mapOutline, statsChartOutline } from 'ionicons/icons';
+import { bagOutline, cartOutline, manOutline, mapOutline, statsChartOutline, listOutline, createOutline, newspaperOutline } from 'ionicons/icons';
 
 const clientItems = [
 	{
-	  title: 'list',
+	  title: 'Lista',
 	  path: '/client',
+	  icon: listOutline,
 	},
 	{
-	  title: 'Detalles',
-	  path: '/client/details',
+	  title: 'Editar',
+	  path: '/client/edit',
+	  icon: createOutline,
 	},
   ];
 
 const productItems =
 [
 	{
-	  title: 'list',
+	  title: 'Lista',
 	  path: '/product',
+	  icon: statsChartOutline,
 	},
 	{
-	  title: 'create',
+	  title: 'Crear',
 	  path: '/product/create',
+	  icon: newspaperOutline,
 	},
   ];
-
-  const orderItems =
-  [
-	  {
-		title: 'list',
-		path: '/orders',
-	  },
-	  {
-		title: 'create',
-		path: '/orders/create',
-	  },
-	];
 
 export const Sections = [
 	{
@@ -60,20 +52,42 @@ export const Sections = [
 				title: 'Clientes',
 				path: '/client',
 				icon: manOutline,
-				subItems: clientItems,
+				subItems: [
+					{
+					  title: 'Lista',
+					  path: '/client',
+					  icon: listOutline,
+					},
+					{
+					  title: 'Editar',
+					  path: '/client/edit',
+					  icon: createOutline,
+					},
+				  ],
 			},
 			{
 				title: 'Productos',
 				path: '/product',
 				icon: bagOutline,
-				subItems: productItems,
+				subItems: [
+					{
+					  title: 'Lista',
+					  path: '/product',
+					  icon: statsChartOutline,
+					},
+					{
+					  title: 'Crear',
+					  path: '/product/create',
+					  icon: newspaperOutline,
+					},
+				  ],
 
 			},
 			{
 				title: 'Pedidos',
 				path: '/order',
 				icon: cartOutline,
-				subItems: orderItems,
+				subItems: '',
 
 			},
 		],
