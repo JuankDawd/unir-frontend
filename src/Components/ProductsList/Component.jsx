@@ -67,12 +67,19 @@ const ProductsList = () => {
   return (
     <IonContent>
       <IonGrid>
+      <IonRow>
+  <IonCol>
+  </IonCol>
+  <IonCol>
+    <IonButton routerLink="/product/create" expand="full">Crear Nuevo Producto</IonButton>
+  </IonCol>
+</IonRow>
   <IonRow>
     <IonCol>
       <IonSearchbar
         value={searchTerm}
         onIonChange={(e) => setSearchTerm(e.detail.value)}
-        placeholder="Search by name"
+        placeholder="Buscar"
       ></IonSearchbar>
     </IonCol>
   </IonRow>

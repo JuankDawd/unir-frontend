@@ -1,3 +1,3 @@
-import Create from '../Create/Create';
+import Create from './Create';
 
 export { Create };
