@@ -172,12 +172,12 @@ const CustomerList = () => {
           <IonTabs onIonTabsDidChange={({ detail }) => handleTabsChange(detail.tab)}>
           <IonRouterOutlet>
           {/* <Redirect exact path="/" to="/tabs/todo" /> */}
-          <Routes>
+          {/* <Routes>
             <Route path="/tabs/todo" component={Tab1} />
             <Route path="/tabs/hasAcceptedMarketing" component={Tab2} />
             <Route path="/tabs/isProspect" component={Tab3} />
             <Route path="/tabs/isReturning" component={Tab4} />
-            </Routes>
+            </Routes> */}
   </IonRouterOutlet>
             
             <IonTabBar slot="top">
