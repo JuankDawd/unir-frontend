@@ -1,4 +1,3 @@
-import Customer from '@pages/Customer/Customer';
 import { Home } from '@pages/Home';
 import { Login } from '@pages/LogIn';
 import { Logistic } from '@pages/Logistic';
@@ -7,8 +6,8 @@ import { Overview } from '@pages/Overview';
 import { Product } from '@pages/Product';
 import { Create } from '@pages/Product/Create';
 import { Register } from '@pages/Register';
-import { Edit } from '@pages/Client/Edit';
-
+import { Edit } from '@pages/Customer/Edit';
+import { Customer } from '@pages/Customer';
 // This object contains all of paths for the App
 export const PATHS = {
 	HOME: '/',
@@ -19,7 +18,6 @@ export const PATHS = {
 	CUSTOMER: '/customer',
 	PRODUCT: '/product',
 	CLIENT_DETAILS: '/customer/edit',
-	PRODUCT_LIST: '/product',
 	PRODUCT_CREATE: '/product/create',
 	ORDER: '/order',
 };
@@ -61,22 +59,12 @@ export const ROUTES = [
 		component: Customer,
 	},
 	{
-		title: 'listClient',
+		title: 'listCostumers',
 		path: PATHS.CLIENT_DETAILS,
 		component: Edit,
 	},
 	{
-		title: 'detailsClient',
-		path: PATHS.CLIENT_DETAILS,
-		component: Client,
-	},
-	{
 		title: 'product',
-		path: PATHS.PRODUCT,
-		component: Product,
-	},
-	{
-		title: 'listProducts',
 		path: PATHS.PRODUCT,
 		component: Product,
 	},

@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import {
+  IonIcon,
   IonCard,
   IonCol,
-  IonContainer,
   IonContent,
   IonGrid,
   IonInput,
@@ -13,13 +14,18 @@ import {
   IonSelectOption,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
+  IonRouterOutlet 
 } from '@ionic/react';
-import { customerApi } from '../../constants/customers';
-import { tabs, sortOptions } from '../../constants/types';
+import { customerApi } from '../../Constants/customers';
+import { tabs, sortOptions } from '../../Constants/types';
 import { CustomerListTable } from './List';
-import { useMounted } from '../../hooks/useMounted';
+import { useMounted } from '../../Hook/useMounted';
 import { searchOutline } from 'ionicons/icons';
+import Tab1 from './Tab1';
+import Tab2 from './Tab2';
+import Tab3 from './Tab3';
+import Tab4 from './Tab4';
 
 const applyFilters = (customers, filters) => customers.filter((customer) => {
   if (filters.query) {
@@ -162,16 +168,25 @@ const CustomerList = () => {
 
   return (
     <IonContent>
-      <IonContainer>
         <IonCard>
-          <IonTabs onIonTabsDidChange={({ detail }) => handleTabsChange(detail.tab)})>
+          <IonTabs onIonTabsDidChange={({ detail }) => handleTabsChange(detail.tab)}>
+          <IonRouterOutlet>
+          {/* <Redirect exact path="/" to="/tabs/todo" /> */}
+          <Routes>
+            <Route path="/tabs/todo" component={Tab1} />
+            <Route path="/tabs/hasAcceptedMarketing" component={Tab2} />
+            <Route path="/tabs/isProspect" component={Tab3} />
+            <Route path="/tabs/isReturning" component={Tab4} />
+            </Routes>
+  </IonRouterOutlet>
+            
             <IonTabBar slot="top">
               {tabs.map((tab) => (
                 <IonTabButton key={tab.value} tab={tab.value}>
                   <IonLabel>{tab.label}</IonLabel>
-            </IonTabButton>
+                </IonTabButton>
               ))}
-        |</IonTabBar>
+            </IonTabBar>
 
             <IonGrid>
               <IonRow>
@@ -214,7 +229,6 @@ const CustomerList = () => {
             page={page}
           />
         </IonCard>
-      </IonContainer>
     </IonContent>
   );
 };
