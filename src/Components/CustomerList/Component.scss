@@ -1,0 +1,40 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+  
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    th {
+      font-weight: bold;
+      text-align: left;
+    }
+  
+    td {
+      text-align: center;
+    }
+  }
+  
+  .pagination-button {
+    margin: 0 4px;
+  }
+  .edit-button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  
+    ion-icon {
+      font-size: 1.5rem;
+      color: #333;
+    }
+  }
+  
+  
+  
+  
+  
+
+  

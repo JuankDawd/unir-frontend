@@ -1,7 +1,7 @@
 import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonToolbar } from '@ionic/react';
 import { defaultValues, registerFormFields, schema } from './constants';
 
-import { AuthController } from '@api/Auth.Controller';
+import { AuthController } from '@utils/API/Customer.Controller';
 import { InputField } from '@components/Input/Component';
 import { PATHS } from '@utils/Routes';
 import { PageWrapper } from '@components/PageWrapper/Component';
