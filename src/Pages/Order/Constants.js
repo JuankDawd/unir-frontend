@@ -362,11 +362,11 @@ export const segments = [
 	},
 	{
 		title: 'Cancelado',
-		value: 'cancelled',
+		value: 'canceled',
 	},
 	{
 		title: 'Completado',
-		value: 'completed',
+		value: 'complete',
 	},
 	{
 		title: 'Pendiente',
@@ -374,6 +374,6 @@ export const segments = [
 	},
 	{
 		title: 'Rechazado',
-		value: 'denied',
+		value: 'rejected',
 	},
 ];
