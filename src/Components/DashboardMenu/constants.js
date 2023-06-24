@@ -6,7 +6,7 @@ export const Sections = [
 		items: [
 			{
 				title: 'Descripción General',
-				path: '/overview',
+				path: '/',
 				icon: statsChartOutline,
 			},
 			{

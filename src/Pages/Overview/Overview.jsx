@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 
 import { PageWrapper } from '@components/PageWrapper/Component';
@@ -19,7 +20,7 @@ const Overview = () => {
 					<IonCardSubtitle>BALANCE TOTAL</IonCardSubtitle>
 					<IonCardTitle>$3,787,681.00</IonCardTitle>
 				</IonCardHeader>
-				<IonCardContent>Variables</IonCardContent>
+				<IonCardContent>variables</IonCardContent>
 			</IonCard>
 		</PageWrapper>
 	);
