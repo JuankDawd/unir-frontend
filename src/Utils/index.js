@@ -9,7 +9,7 @@ export const mockedUsers = [
 	{
 		username: 'jane.doe',
 		password: 'password2',
-		uuid: uuidv4(),
+		uuid: uuidv4(), 
 	},
 	{
 		username: 'michael.johnson',
