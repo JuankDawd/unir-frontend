@@ -12,8 +12,9 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.11.1",
 		"@hookform/resolvers": "^3.1.1",
-		"@ionic/react": "^7.0.14",
+		"@ionic/react": "^7.1.0",
 		"@reduxjs/toolkit": "^1.9.5",
 		"axios": "^1.4.0",
 		"date-fns": "^2.30.0",
@@ -24,6 +25,7 @@
 		"react-redux": "^8.1.0",
 		"react-router-dom": "^6.13.0",
 		"sass": "^1.63.4",
+		"simplebar": "^6.2.5",
 		"uuid": "^9.0.0",
 		"zod": "^3.21.4"
 	},
