@@ -1,22 +1,22 @@
 import './Component.scss';
 
-import { IonButton, IonCol, IonContent, IonGrid, IonRow, IonSearchbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCardContent } from '@ionic/react';
 import { useEffect, useState } from 'react';
 
 import { CustomerTable } from '@components/CustomerTable/Component';
+import PropTypes from 'prop-types';
 import useCustomerSearch from '@utils/hooks/useCustomerSearch';
 
-export function CustomerList() {
+export function CustomerList({ searchTerm }) {
 	const [filteredData, setFilteredData] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itemsPerPage] = useState(5);
-	const [searchTerm, setSearchTerm] = useState('');
 
 	const { data } = useCustomerSearch({});
 
 	useEffect(() => {
 		const filterData = () => {
-			const filtered = data.filter((customer) => customer.name.toLowerCase().includes(searchTerm.toLowerCase()));
+			const filtered = data.filter((customer) => customer.name.includes(searchTerm));
 			setFilteredData(filtered);
 		};
 
@@ -36,35 +36,24 @@ export function CustomerList() {
 	const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
 	return (
-		<IonContent>
-			<IonGrid>
-				<IonRow>
-					<IonCol>
-						<IonSearchbar value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value)} placeholder="Buscar" />
-					</IonCol>
-				</IonRow>
-				<IonRow>
-					<IonCol>
-						<CustomerTable items={currentItems} />
-					</IonCol>
-				</IonRow>
-				<IonRow>
-					<IonCol>
-						<IonButton disabled={currentPage === 1} onClick={goToPreviousPage} className="pagination-button">
-							Previous
-						</IonButton>
-					</IonCol>
-					<IonCol>
-						<IonButton
-							disabled={indexOfLastItem >= filteredData.length}
-							onClick={goToNextPage}
-							className="pagination-button"
-						>
-							Next
-						</IonButton>
-					</IonCol>
-				</IonRow>
-			</IonGrid>
-		</IonContent>
+		<IonCardContent>
+			<CustomerTable items={currentItems} />
+			<IonButtons>
+				<IonButton disabled={currentPage === 1} onClick={goToPreviousPage} className="pagination-button">
+					Previous
+				</IonButton>
+				<IonButton
+					disabled={indexOfLastItem >= filteredData.length}
+					onClick={goToNextPage}
+					className="pagination-button"
+				>
+					Next
+				</IonButton>
+			</IonButtons>
+		</IonCardContent>
 	);
 }
+
+CustomerList.propTypes = {
+	searchTerm: PropTypes.string,
+};

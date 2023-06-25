@@ -19,13 +19,13 @@
 }
 
 
-.item-label {
+.item-label,
+.item-btn {
     width: 100%;
+    overflow-wrap: break-word !important;
 }
 
-.item-btn {
-    width: 20%;
-}
+
 
 .border {
     border: 1px solid black;
