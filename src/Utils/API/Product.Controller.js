@@ -3,6 +3,8 @@ import { subDays, subHours } from 'date-fns';
 const now = new Date();
 
 class ProductControllerApi {
+	path = '/';
+
 	getCustomersActually() {
 		try {
 			const resp = 0;

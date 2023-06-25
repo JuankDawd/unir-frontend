@@ -15,8 +15,7 @@ export default () => {
 				console.error('Error fetching data:', error);
 			}
 		};
-		// eslint-disable-next-line no-console
-		console.log('object');
+
 		fetchData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

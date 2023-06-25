@@ -1,9 +1,9 @@
 import './Component.scss';
 
-import { IonButton, IonCol, IonContent, IonGrid, IonIcon, IonRow, IonSearchbar } from '@ionic/react';
+import { IonButton, IonCol, IonContent, IonGrid, IonRow, IonSearchbar } from '@ionic/react';
 import { useEffect, useState } from 'react';
 
-import { pencilOutline } from 'ionicons/icons';
+import { CustomerTable } from '@components/CustomerTable/Component';
 import useCustomerSearch from '@utils/hooks/useCustomerSearch';
 
 export function CustomerList() {
@@ -40,41 +40,12 @@ export function CustomerList() {
 			<IonGrid>
 				<IonRow>
 					<IonCol>
-						<IonSearchbar
-							value={searchTerm}
-							onIonChange={(e) => setSearchTerm(e.detail.value)}
-							placeholder="Buscar"
-						></IonSearchbar>
+						<IonSearchbar value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value)} placeholder="Buscar" />
 					</IonCol>
 				</IonRow>
 				<IonRow>
 					<IonCol>
-						<table className="table">
-							<thead>
-								<tr>
-									<th>Nombre</th>
-									<th>Correo Electronico</th>
-									<th>Pedidos</th>
-									<th>Valor</th>
-									<th>Acciones</th>
-								</tr>
-							</thead>
-							<tbody>
-								{currentItems.map((customer) => (
-									<tr key={customer.id}>
-										<td>{customer.name}</td>
-										<td>{customer.email}</td>
-										<td>{customer.totalOrders}</td>
-										<td>{customer.totalAmountSpent}</td>
-										<td>
-											<IonButton className="edit-button">
-												<IonIcon icon={pencilOutline} />
-											</IonButton>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
+						<CustomerTable items={currentItems} />
 					</IonCol>
 				</IonRow>
 				<IonRow>

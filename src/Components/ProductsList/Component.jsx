@@ -62,11 +62,7 @@ export function ProductsList() {
 				</IonRow>
 				<IonRow>
 					<IonCol>
-						<IonSearchbar
-							value={searchTerm}
-							onIonChange={(e) => setSearchTerm(e.detail.value)}
-							placeholder="Buscar"
-						></IonSearchbar>
+						<IonSearchbar value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value)} placeholder="Buscar" />
 					</IonCol>
 				</IonRow>
 				<IonRow>
@@ -100,16 +96,7 @@ export function ProductsList() {
 						</select>
 					</IonCol>
 				</IonRow>
-				<IonRow>
-					<IonCol>
-						<table className="table">{/* Rest of the table code */}</table>
-					</IonCol>
-				</IonRow>
-				<IonRow>
-					<IonCol>
-						<div className="pagination">{/* Pagination buttons */}</div>
-					</IonCol>
-				</IonRow>
+
 				<IonRow>
 					<IonCol>
 						<table className="table">
@@ -149,6 +136,7 @@ export function ProductsList() {
 						</table>
 					</IonCol>
 				</IonRow>
+
 				<IonRow>
 					<IonCol>
 						<div className="pagination">

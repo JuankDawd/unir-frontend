@@ -11,7 +11,7 @@ export const Sections = [
 			},
 			{
 				title: 'Logistica',
-				path: '/logistic',
+				path: '/logistics',
 				icon: mapOutline,
 			},
 		],
@@ -21,17 +21,17 @@ export const Sections = [
 		items: [
 			{
 				title: 'Customer',
-				path: '/customer',
+				path: '/customers',
 				icon: manOutline,
 			},
 			{
 				title: 'Productos',
-				path: '/product',
+				path: '/products',
 				icon: bagOutline,
 			},
 			{
 				title: 'Pedidos',
-				path: '/order',
+				path: '/orders',
 				icon: cartOutline,
 			},
 		],

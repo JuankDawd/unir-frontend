@@ -3,6 +3,8 @@ import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
 const now = new Date();
 
 class CustomerControllerApi {
+	path = '/';
+
 	getCustomersActually() {
 		try {
 			const resp = 0;

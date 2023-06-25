@@ -1,6 +1,7 @@
 import { Customer } from '@pages/Customer';
 import { Logistic } from '@pages/Logistic';
 import { Order } from '@pages/Order';
+import { OrderDetails } from '@pages/OrderDetails';
 import { Overview } from '@pages/Overview';
 import { Product } from '@pages/Product';
 import { ProductCreate } from '@pages/ProductCreate';
@@ -8,12 +9,12 @@ import { ProductCreate } from '@pages/ProductCreate';
 // This object contains all of paths for the App
 export const PATHS = {
 	OVERVIEW: '/',
-	LOGISTIC: '/logistic',
-	CUSTOMER: '/customer',
-	CUSTOMER_DETAILS: '/customer/edit',
-	PRODUCT: '/product',
-	PRODUCT_CREATE: '/product/create',
-	ORDER: '/order',
+	LOGISTIC: '/logistics',
+	CUSTOMER: '/customers',
+	PRODUCT: '/products',
+	PRODUCT_CREATE: '/products/create',
+	ORDER: '/orders',
+	ORDER_EDIT: '/orders/:id',
 };
 
 // This Array contains all the Routes for the App
@@ -49,5 +50,10 @@ export const ROUTES = [
 		title: 'order',
 		path: PATHS.ORDER,
 		component: Order,
+	},
+	{
+		title: 'order edit',
+		path: PATHS.ORDER_EDIT,
+		component: OrderDetails,
 	},
 ];

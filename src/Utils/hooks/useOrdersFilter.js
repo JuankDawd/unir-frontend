@@ -2,21 +2,34 @@ import { useEffect, useState } from 'react';
 
 import { orders as mockedOrders } from '@pages/Order/Constants';
 
-export default ({ status }) => {
-	const [orders, setOrders] = useState([]);
+export default ({ status, selector, ordersOld }) => {
+	const [ordersFiltered, setOrdersFiltered] = useState(ordersOld);
 
 	useEffect(() => {
-		const loadOrders = () => {
+		const filterOrdersByStatus = () => {
 			if (status === 'all') {
-				setOrders([...mockedOrders]);
+				setOrdersFiltered([...mockedOrders]);
 			} else {
 				const filteredOrders = mockedOrders.filter((order) => order.status === status);
-				setOrders([...filteredOrders]);
+				setOrdersFiltered([...filteredOrders]);
 			}
 		};
 
-		loadOrders();
+		filterOrdersByStatus();
 	}, [status]);
 
-	return { orders };
+	useEffect(() => {
+		const filterOrderBySelector = () => {
+			if (selector === 'newest') {
+				const filteredOrders = ordersOld.sort((a, b) => a.createdAt - b.createdAt);
+				setOrdersFiltered([...filteredOrders]);
+			} else {
+				const filteredOrders = ordersOld.sort((a, b) => b.createdAt - a.createdAt);
+				setOrdersFiltered([...filteredOrders]);
+			}
+		};
+		filterOrderBySelector();
+	}, [selector, ordersOld]);
+
+	return { ordersFiltered };
 };
