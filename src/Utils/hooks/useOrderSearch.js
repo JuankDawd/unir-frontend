@@ -27,7 +27,7 @@ export default ({ id }) => {
 		],
 		number: '',
 		paymentMethod: '',
-		status: '',
+		status: 'pending',
 		totalAmount: 0,
 	});
 

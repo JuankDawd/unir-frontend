@@ -1,7 +1,7 @@
 import { IonCard, IonContent, IonFab, IonFabButton, IonIcon } from '@ionic/react';
 
 import { OrderHeader } from '@components/OrderHeader/Component';
-import { OrderTable } from '@components/OrderTable/OrderTable';
+import { OrderTable } from '@components/OrderTable/Component';
 import { PageWrapper } from '@components/PageWrapper/Component';
 import { add } from 'ionicons/icons';
 import { segments } from './Constants';
