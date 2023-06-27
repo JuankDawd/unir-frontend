@@ -1,7 +1,6 @@
 import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonToolbar } from '@ionic/react';
 import { defaultValues, registerFormFields, schema } from './constants';
 
-import { AuthController } from '@utils/API/Customer.Controller';
 import { InputField } from '@components/Input/Component';
 import { PATHS } from '@utils/Routes';
 import { PageWrapper } from '@components/PageWrapper/Component';
@@ -19,12 +18,8 @@ const Register = () => {
 		navigate(path);
 	};
 
-	const onSubmit = (data) => {
-		const [__message, header] = AuthController.register(data);
-
-		if (header === 'Success') {
-			setTimeout(() => navigate(PATHS.HOME), 1500);
-		}
+	const onSubmit = (_data) => {
+		// eslint-disable-next-line no-console
 	};
 
 	return (

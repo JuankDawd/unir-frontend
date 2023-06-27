@@ -29,12 +29,11 @@ export function ProductsList({ searchTerm, selectedCategory, selectedStatus, sel
 			const filtered = data.filter((product) => {
 				const productName = product.name.toLowerCase();
 				const matchesSearchTerm = productName.includes(searchTerm.toLowerCase());
-				const matchesCategory = selectedCategory !== '' ? product.category === selectedCategory : true;
-				const matchesStatus = selectedStatus ? product.status === selectedStatus : true;
+				const matchesCategory = selectedCategory === 'all' ? true : product.category === selectedCategory;
+				const matchesStatus = selectedStatus === 'all' ? true : product.status === selectedStatus;
 				const matchesStock =
 					selectedStock === 'available' ? product.inStock : selectedStock === 'outOfStock' ? !product.inStock : true;
-				// eslint-disable-next-line no-console
-				console.log(matchesSearchTerm && matchesCategory && matchesStatus && matchesStock);
+
 				return matchesSearchTerm && matchesCategory && matchesStatus && matchesStock;
 			});
 
@@ -52,10 +51,10 @@ export function ProductsList({ searchTerm, selectedCategory, selectedStatus, sel
 		<IonCardContent>
 			<ProductTable items={currentItems} />
 			<IonButtons>
-				<IonButton color="primary" fill="outline" onClick={goToPreviousPage} disabled={currentPage === 1}>
+				<IonButton onClick={goToPreviousPage} className="pagination-button" disabled={currentPage === 1}>
 					Previous
 				</IonButton>
-				<IonButton color="primary" fill="outline" onClick={goToNextPage} disabled={currentItems.length < itemsPerPage}>
+				<IonButton className="pagination-button" onClick={goToNextPage} disabled={currentItems.length < itemsPerPage}>
 					Next
 				</IonButton>
 			</IonButtons>
@@ -65,7 +64,7 @@ export function ProductsList({ searchTerm, selectedCategory, selectedStatus, sel
 
 ProductsList.propTypes = {
 	searchTerm: PropTypes.string,
-	selectedCategory: PropTypes.bool,
-	selectedStatus: PropTypes.bool,
-	selectedStock: PropTypes.bool,
+	selectedCategory: PropTypes.string,
+	selectedStatus: PropTypes.string,
+	selectedStock: PropTypes.string,
 };

@@ -17,7 +17,6 @@ import {
 import { DashboardMenu } from '@components/DashboardMenu/Component';
 import { PATHS } from '@utils/Routes';
 import PropTypes from 'prop-types';
-import { SessionButton } from '@components/SessionButton/Component';
 import { homeOutline } from 'ionicons/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -53,7 +52,7 @@ export function PageWrapper({ children, title }) {
 							</IonButtons>
 							<IonTitle>{title}</IonTitle>
 							<IonButtons slot="end">
-								<SessionButton />
+								<IonButton disabled={true}></IonButton>
 							</IonButtons>
 						</IonToolbar>
 					</IonHeader>

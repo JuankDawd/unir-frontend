@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { OrderController } from '@api/Order.Controller';
+import { LogisticController } from '@api/Logistic.Controller';
 
 export default () => {
 	const [data, setData] = useState([]);
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const dataFetch = await OrderController.getOrders();
+				const dataFetch = await LogisticController.getLogisticInformation();
 				setData([...dataFetch]);
 			} catch (error) {
 				// eslint-disable-next-line no-console

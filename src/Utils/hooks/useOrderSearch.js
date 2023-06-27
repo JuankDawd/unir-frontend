@@ -1,47 +1,16 @@
-/* eslint-disable no-console */
-import { OrderController } from '@api/Order.Controller';
 import { useEffect, useState } from 'react';
 
+/* eslint-disable no-console */
+import { OrderController } from '@api/Order.Controller';
+
 export default ({ id }) => {
-	const [order, setOrder] = useState({
-		id: '',
-		createdAt: 0,
-		currency: '',
-		customer: {
-			address1: '',
-			address2: '',
-			city: '',
-			country: '',
-			email: '',
-			name: '',
-		},
-		items: [
-			{
-				id: '',
-				billingCycle: '',
-				currency: '',
-				name: '',
-				quantity: 0,
-				unitAmount: 0,
-			},
-		],
-		number: '',
-		paymentMethod: '',
-		status: 'pending',
-		totalAmount: 0,
-	});
+	const [order, setOrder] = useState({});
 
 	useEffect(() => {
-		const loadOrder = () => {
-			try {
-				const orderFound = OrderController.getOrder(id);
-				if (orderFound !== null) {
-					console.log(orderFound, { ...orderFound });
-					setOrder({ ...orderFound });
-				}
-			} catch (err) {
-				setOrder();
-			}
+		const loadOrder = async () => {
+			const orderFound = await OrderController.getOrder(id);
+			console.log(orderFound);
+			setOrder(orderFound);
 		};
 		loadOrder();
 	}, [id]);

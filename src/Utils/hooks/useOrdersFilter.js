@@ -1,35 +1,37 @@
 import { useEffect, useState } from 'react';
 
-import { orders as mockedOrders } from '@pages/Order/Constants';
-
-export default ({ status, selector, ordersOld }) => {
-	const [ordersFiltered, setOrdersFiltered] = useState(ordersOld);
+export default ({ status, selector, orders }) => {
+	const [ordersFiltered, setOrdersFiltered] = useState(orders);
 
 	useEffect(() => {
 		const filterOrdersByStatus = () => {
+			// eslint-disable-next-line no-console
 			if (status === 'all') {
-				setOrdersFiltered([...mockedOrders]);
+				setOrdersFiltered([...orders]);
 			} else {
-				const filteredOrders = mockedOrders.filter((order) => order.status === status);
+				const filteredOrders = orders.filter((order) => order.status === status);
 				setOrdersFiltered([...filteredOrders]);
 			}
 		};
-
-		filterOrdersByStatus();
-	}, [status]);
+		if (orders !== undefined) {
+			filterOrdersByStatus();
+		}
+	}, [orders, status]);
 
 	useEffect(() => {
 		const filterOrderBySelector = () => {
 			if (selector === 'newest') {
-				const filteredOrders = ordersOld.sort((a, b) => a.createdAt - b.createdAt);
+				const filteredOrders = orders.sort((a, b) => b.createdAt - a.createdAt);
 				setOrdersFiltered([...filteredOrders]);
 			} else {
-				const filteredOrders = ordersOld.sort((a, b) => b.createdAt - a.createdAt);
+				const filteredOrders = orders.sort((a, b) => a.createdAt - b.createdAt);
 				setOrdersFiltered([...filteredOrders]);
 			}
 		};
-		filterOrderBySelector();
-	}, [selector, ordersOld]);
+		if (orders !== undefined) {
+			filterOrderBySelector();
+		}
+	}, [selector, orders]);
 
 	return { ordersFiltered };
 };

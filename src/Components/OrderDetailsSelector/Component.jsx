@@ -1,7 +1,9 @@
-import { IonButton, IonCol, IonGrid, IonRow, IonSelect, IonSelectOption } from '@ionic/react';
-import PropTypes from 'prop-types';
-import { orderStatus } from './constants';
+import { IonButton, IonCol, IonGrid, IonRow } from '@ionic/react';
+
 import { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { StyledSelector } from '@components/StyledSelector/Component';
+import { orderStatus } from './constants';
 
 export function OrderDetailsSelector({ selector, handleSelector, statusChange }) {
 	return (
@@ -9,22 +11,12 @@ export function OrderDetailsSelector({ selector, handleSelector, statusChange })
 			<IonGrid>
 				<IonRow>
 					<IonCol size="9">
-						<IonSelect
-							fill="outline"
+						<StyledSelector
 							label="Estado:"
-							labelPlacement="floating"
-							interface="popover"
+							selectorOptions={orderStatus}
+							setValue={(x) => handleSelector(x)}
 							value={selector}
-							onIonChange={(x) => handleSelector(x)}
-						>
-							{orderStatus.map(({ title, value }, key) => {
-								return (
-									<IonSelectOption value={value} key={key}>
-										{title}
-									</IonSelectOption>
-								);
-							})}
-						</IonSelect>
+						/>
 					</IonCol>
 					<IonCol size="3">
 						<IonButton disabled={statusChange()}>Actualizar</IonButton>
@@ -38,5 +30,5 @@ export function OrderDetailsSelector({ selector, handleSelector, statusChange })
 OrderDetailsSelector.propTypes = {
 	selector: PropTypes.string,
 	handleSelector: PropTypes.func,
-	statusChange: PropTypes.bool,
+	statusChange: PropTypes.func,
 };

@@ -11,13 +11,14 @@ import {
 
 import { PATHS } from '@utils/Routes';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 export function OrderDetailsHeader({ number, date }) {
 	const navigate = useNavigate();
 	const goTo = () => navigate(PATHS.ORDER);
-	const handleSubtiltle = (date) => format(date, 'dd/MM/yyyy HH:mm');
+	const handleSubtiltle = (_date) => {
+		// eslint-disable-next-line no-console
+	};
 
 	return (
 		<IonCard>
@@ -41,5 +42,5 @@ export function OrderDetailsHeader({ number, date }) {
 
 OrderDetailsHeader.propTypes = {
 	number: PropTypes.string,
-	date: PropTypes.number,
+	date: PropTypes.any,
 };

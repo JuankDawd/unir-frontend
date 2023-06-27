@@ -5,6 +5,7 @@ import { OrderDetails } from '@pages/OrderDetails';
 import { Overview } from '@pages/Overview';
 import { Product } from '@pages/Product';
 import { ProductCreate } from '@pages/ProductCreate';
+import { Register } from '@pages/Register';
 
 // This object contains all of paths for the App
 export const PATHS = {
@@ -15,6 +16,7 @@ export const PATHS = {
 	PRODUCT_CREATE: '/products/create',
 	ORDER: '/orders',
 	ORDER_EDIT: '/orders/:id',
+	REGISTER: '/register',
 };
 
 // This Array contains all the Routes for the App
@@ -55,5 +57,10 @@ export const ROUTES = [
 		title: 'order edit',
 		path: PATHS.ORDER_EDIT,
 		component: OrderDetails,
+	},
+	{
+		title: 'register',
+		path: PATHS.REGISTER,
+		component: Register,
 	},
 ];

@@ -1,35 +1,88 @@
 import './Component.scss';
 
-import { IonButton, IonIcon, IonItem, IonLabel, IonList, IonListHeader } from '@ionic/react';
+import {
+	IonButton,
+	IonCol,
+	IonGrid,
+	IonIcon,
+	IonItem,
+	IonLabel,
+	IonList,
+	IonListHeader,
+	IonRow,
+	IonText,
+} from '@ionic/react';
 
+import { CustomerController } from '@api/Customer.Controller';
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { trashBinOutline } from 'ionicons/icons';
 
 export function CustomerTable({ items }) {
-	const handleUserDelete = (id) => {
-		alert(`We can't delete the customer with the ID: ${id} at the moment`);
+	const handleUserDelete = async (id) => {
+		await CustomerController.deleteCustomer(id);
 	};
+
+	const handleOrdersAmount = (orders) => orders.length;
+
+	const handleOrdersTotalPrice = (orders) => orders.reduce((a, b) => a + b.totalAmount, 0);
+
 	return (
 		<Fragment>
 			<IonList>
 				<IonListHeader class="list-header">
-					<IonLabel className="item-label left-align">Nombre</IonLabel>
-					<IonLabel className="item-label left-align">Correo Electronico</IonLabel>
-					<IonLabel className="item-label center-align">Pedidos</IonLabel>
-					<IonLabel className="item-label center-align">Valor</IonLabel>
-					<IonLabel className="item-label center-align">Acciones</IonLabel>
+					<IonGrid>
+						<IonRow>
+							<IonCol size="2.4">
+								<IonLabel className="item-label left-align">Nombre</IonLabel>
+							</IonCol>
+							<IonCol size="2.4">
+								<IonLabel className="item-label left-align">Correo Electronico</IonLabel>
+							</IonCol>
+							<IonCol size="2.4">
+								<IonLabel className="item-label center-align">Pedidos</IonLabel>
+							</IonCol>
+							<IonCol size="2.4">
+								<IonLabel className="item-label center-align">Costos</IonLabel>
+							</IonCol>
+							<IonCol size="2.4">
+								<IonLabel className="item-label center-align">Acciones</IonLabel>
+							</IonCol>
+						</IonRow>
+					</IonGrid>
 				</IonListHeader>
 				{items.map((customer) => {
 					return (
 						<IonItem key={customer.id} className="no-padding">
-							<IonLabel className="item-label left-align">{customer.name}</IonLabel>
-							<IonLabel className="item-label">{customer.email}</IonLabel>
-							<IonLabel className="item-label center-align">{customer.totalOrders}</IonLabel>
-							<IonLabel className="item-label center-align">{customer.totalAmountSpent}</IonLabel>
-							<IonButton color="danger" className="item-btn" onClick={() => handleUserDelete(customer.id)}>
-								<IonIcon icon={trashBinOutline} />
-							</IonButton>
+							<IonGrid>
+								<IonRow>
+									<IonCol size="2.4">
+										<IonText className="item-label">
+											<h3 className="item-label center-align">{customer.name}</h3>
+										</IonText>
+									</IonCol>
+									<IonCol size="2.4">
+										<IonText className="item-label">
+											<h3 className="item-label center-align">{customer.email}</h3>
+										</IonText>
+									</IonCol>
+									<IonCol size="2.4">
+										<IonText className="item-label">
+											<h3 className="item-label center-align">{handleOrdersAmount(customer.orders)}</h3>
+										</IonText>
+									</IonCol>
+									<IonCol size="2.4">
+										<IonText className="item-label">
+											<h3 className="item-label center-align">{handleOrdersTotalPrice(customer.orders)}</h3>
+										</IonText>
+									</IonCol>
+									<IonCol size="2.4">
+										<IonButton color="danger" className="item-btn" onClick={() => handleUserDelete(customer.id)}>
+											<IonIcon icon={trashBinOutline} />
+										</IonButton>
+									</IonCol>
+								</IonRow>
+							</IonGrid>
 						</IonItem>
 					);
 				})}

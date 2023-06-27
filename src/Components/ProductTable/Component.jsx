@@ -14,12 +14,16 @@ import {
 } from '@ionic/react';
 
 import { Fragment } from 'react';
+import { ProductController } from '@api/Product.Controller';
 import PropTypes from 'prop-types';
 import { trashBinOutline } from 'ionicons/icons';
+import { useNavigate } from 'react-router-dom';
 
 export function ProductTable({ items }) {
-	const handleUserDelete = (id) => {
-		alert(`We can't delete the customer with the ID: ${id} at the moment`);
+	const navigate = useNavigate();
+	const handleUserDelete = async (id) => {
+		await ProductController.deleteProduct(id);
+		setTimeout(() => navigate(0), 1000);
 	};
 	return (
 		<Fragment>

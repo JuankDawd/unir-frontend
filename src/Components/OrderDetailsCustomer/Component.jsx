@@ -1,6 +1,7 @@
 import { IonItem, IonLabel } from '@ionic/react';
-import PropTypes from 'prop-types';
+
 import { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 export function OrderDetailsCustomer({ customer }) {
 	return (

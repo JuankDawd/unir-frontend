@@ -1,7 +1,8 @@
-import { IonCardHeader, IonSearchbar, IonSelect, IonSelectOption, IonToolbar } from '@ionic/react';
+import { IonCardHeader, IonCol, IonGrid, IonRow, IonSearchbar, IonToolbar } from '@ionic/react';
 import { categoryOptions, statusOptions, stockOptions } from '@utils/Constants/products';
 
 import PropTypes from 'prop-types';
+import { StyledSelector } from '@components/StyledSelector/Component';
 
 export function ProductHeader({
 	searchTerm,
@@ -19,54 +20,34 @@ export function ProductHeader({
 				<IonSearchbar value={searchTerm} onIonChange={(e) => setSearchTerm(e.detail.value)} placeholder="Buscar" />
 			</IonToolbar>
 			<IonToolbar>
-				<IonSelect
-					fill="outline"
-					label="Categoria:"
-					labelPlacement="floating"
-					interface="popover"
-					value={selectedCategory}
-					onIonChange={(x) => setSelectedCategory(x)}
-				>
-					{categoryOptions.map(({ label, value }, key) => {
-						return (
-							<IonSelectOption value={value} key={key}>
-								{label}
-							</IonSelectOption>
-						);
-					})}
-				</IonSelect>
-				<IonSelect
-					fill="outline"
-					label="Estado:"
-					labelPlacement="floating"
-					interface="popover"
-					value={selectedStatus}
-					onIonChange={(x) => setSelectedStatus(x)}
-				>
-					{statusOptions.map(({ label, value }, key) => {
-						return (
-							<IonSelectOption value={value} key={key}>
-								{label}
-							</IonSelectOption>
-						);
-					})}
-				</IonSelect>
-				<IonSelect
-					fill="outline"
-					label="Stock:"
-					labelPlacement="floating"
-					interface="popover"
-					value={selectedStock}
-					onIonChange={(x) => setSelectedStock(x)}
-				>
-					{stockOptions.map(({ label, value }, key) => {
-						return (
-							<IonSelectOption value={value} key={key}>
-								{label}
-							</IonSelectOption>
-						);
-					})}
-				</IonSelect>
+				<IonGrid>
+					<IonRow>
+						<IonCol>
+							<StyledSelector
+								label="Categoria:"
+								selectorOptions={categoryOptions}
+								setValue={(x) => setSelectedCategory(x.detail.value)}
+								value={selectedCategory}
+							/>
+						</IonCol>
+						<IonCol>
+							<StyledSelector
+								label="Estado:"
+								selectorOptions={statusOptions}
+								setValue={(x) => setSelectedStatus(x.detail.value)}
+								value={selectedStatus}
+							/>
+						</IonCol>
+						<IonCol>
+							<StyledSelector
+								label="Stock:"
+								selectorOptions={stockOptions}
+								setValue={(x) => setSelectedStock(x.detail.value)}
+								value={selectedStock}
+							/>
+						</IonCol>
+					</IonRow>
+				</IonGrid>
 			</IonToolbar>
 		</IonCardHeader>
 	);

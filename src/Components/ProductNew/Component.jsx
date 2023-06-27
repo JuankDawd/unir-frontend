@@ -1,7 +1,8 @@
 import './Component.scss';
 
-import { IonButton, IonInput, IonLabel } from '@ionic/react';
-
+import { IonButton } from '@ionic/react';
+import { StyledNumberInput } from '@components/StyledNumberInput/Component';
+import { StyledTextInput } from '@components/StyledTextInput/Component';
 import { useState } from 'react';
 
 export function CreateProductForm() {
@@ -12,7 +13,13 @@ export function CreateProductForm() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
+		// eslint-disable-next-line no-console
+		console.log({
+			name,
+			category,
+			price,
+			quantity,
+		});
 		// Aqui tocariia agregar la api de creacion de producto
 		setName('');
 		setCategory('');
@@ -22,35 +29,24 @@ export function CreateProductForm() {
 
 	return (
 		<form onSubmit={handleSubmit} className="create-product-form">
-			<IonLabel>
-				Nombre:
-				<IonInput type="text" value={name} onIonChange={(e) => setName(e.target.value)} required></IonInput>
-			</IonLabel>
+			<StyledTextInput label="Nombre" placeholder="Digite un nombre" setValue={setName} type="text" value={name} />
 
-			<IonLabel>
-				Categoría:
-				<IonInput type="text" value={category} onIonChange={(e) => setCategory(e.target.value)} required></IonInput>
-			</IonLabel>
+			<StyledTextInput
+				label="Categoría"
+				placeholder="Digite una Categoría"
+				setValue={setCategory}
+				type="text"
+				value={category}
+			/>
 
-			<IonLabel>
-				Precio:
-				<IonInput
-					type="number"
-					value={price}
-					onIonChange={(e) => setPrice(parseFloat(e.target.value))}
-					required
-				></IonInput>
-			</IonLabel>
-
-			<IonLabel>
-				Cantidad:
-				<IonInput
-					type="number"
-					value={quantity}
-					onIonChange={(e) => setQuantity(parseInt(e.target.value))}
-					required
-				></IonInput>
-			</IonLabel>
+			<StyledNumberInput label="Precio" placeholder="Digite un Precio" setValue={setPrice} type="float" value={price} />
+			<StyledNumberInput
+				label="Cantidad"
+				placeholder="Digite una Cantidad"
+				setValue={setQuantity}
+				type="int"
+				value={quantity}
+			/>
 
 			<IonButton type="submit">Guardar Producto</IonButton>
 		</form>

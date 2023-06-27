@@ -1,52 +1,60 @@
 export const categoryOptions = [
 	{
-		label: 'Cuidado de la salud',
+		title: 'Todo',
+		value: 'all',
+	},
+	{
+		title: 'Cuidado de la salud',
 		value: 'cuidado-salud',
 	},
 	{
-		label: 'Maquillaje',
+		title: 'Maquillaje',
 		value: 'maquillaje',
 	},
 	{
-		label: 'Vestidos',
+		title: 'Vestidos',
 		value: 'vestidos',
 	},
 	{
-		label: 'Protección de la piel',
+		title: 'Protección de la piel',
 		value: 'cuidado-piel',
 	},
 	{
-		label: 'Joyas',
+		title: 'Joyas',
 		value: 'joyeria',
 	},
 	{
-		label: 'Blusa',
+		title: 'Blusa',
 		value: 'blusa',
 	},
 ];
 
 export const statusOptions = [
 	{
-		label: 'Publicado',
+		title: 'Todo',
+		value: 'all',
+	},
+	{
+		title: 'Publicado',
 		value: 'publicado',
 	},
 	{
-		label: 'Borrador',
+		title: 'Borrador',
 		value: 'borrador',
 	},
 ];
 
 export const stockOptions = [
 	{
-		label: 'Todo',
+		title: 'Todo',
 		value: 'all',
 	},
 	{
-		label: 'Disponible',
+		title: 'Disponible',
 		value: 'available',
 	},
 	{
-		label: 'Agotado',
+		title: 'Agotado',
 		value: 'outOfStock',
 	},
 ];

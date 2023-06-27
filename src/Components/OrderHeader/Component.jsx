@@ -7,14 +7,14 @@ import {
 	IonSearchbar,
 	IonSegment,
 	IonSegmentButton,
-	IonSelect,
-	IonSelectOption,
 	IonToolbar,
 } from '@ionic/react';
 
 import PropTypes from 'prop-types';
+import { StyledSelector } from '@components/StyledSelector/Component';
+import { selectorOptions } from './Constants';
 
-export function OrderHeader({ Segments, status, handleSegments, selector, handleSelector }) {
+export function OrderHeader({ Segments, status, handleSegments, selector, handleSelector, searchTerm, setSearchTerm }) {
 	return (
 		<IonCardHeader>
 			<IonToolbar>
@@ -32,20 +32,19 @@ export function OrderHeader({ Segments, status, handleSegments, selector, handle
 				<IonGrid>
 					<IonRow>
 						<IonCol size="9">
-							<IonSearchbar />
+							<IonSearchbar
+								value={searchTerm}
+								onIonChange={(e) => setSearchTerm(e.detail.value)}
+								placeholder="Buscar"
+							/>
 						</IonCol>
 						<IonCol size="3">
-							<IonSelect
-								fill="outline"
-								label="Ordenar por:"
-								labelPlacement="stacked"
-								interface="action-sheet"
+							<StyledSelector
+								selectorOptions={selectorOptions}
+								label="Estado:"
+								setValue={(x) => handleSelector(x)}
 								value={selector}
-								onIonChange={(x) => handleSelector(x)}
-							>
-								<IonSelectOption value="oldest">Lo mas viejo</IonSelectOption>
-								<IonSelectOption value="newest">Lo mas nuevo</IonSelectOption>
-							</IonSelect>
+							/>
 						</IonCol>
 					</IonRow>
 				</IonGrid>
@@ -60,4 +59,6 @@ OrderHeader.propTypes = {
 	handleSegments: PropTypes.func,
 	selector: PropTypes.string,
 	handleSelector: PropTypes.func,
+	searchTerm: PropTypes.string,
+	setSearchTerm: PropTypes.func,
 };

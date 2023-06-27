@@ -1,14 +1,14 @@
-import { OrderDetailsItem } from '@components/OrderDetailsItem/Component';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItemGroup, IonLabel, IonToolbar } from '@ionic/react';
-import PropTypes from 'prop-types';
-import { format } from 'date-fns';
-import { OrderDetailsCustomer } from '@components/OrderDetailsCustomer/Component';
-import { OrderDetailsSelector } from '@components/OrderDetailsSelector/Component';
 import { useEffect, useState } from 'react';
+
+import { OrderDetailsCustomer } from '@components/OrderDetailsCustomer/Component';
+import { OrderDetailsItem } from '@components/OrderDetailsItem/Component';
+import { OrderDetailsSelector } from '@components/OrderDetailsSelector/Component';
+import PropTypes from 'prop-types';
 import numeral from 'numeral';
 
 export function OrderDetailsList({ order }) {
-	const handleDate = (date) => format(date, 'dd/MM/yyyy HH:mm');
+	const handleDate = (_date) => {};
 	const handleAmount = (amount, currency) => numeral(amount).format(`${currency}0,0.00`);
 
 	const [selector, setSelector] = useState('');
@@ -33,10 +33,10 @@ export function OrderDetailsList({ order }) {
 			</IonCardHeader>
 			<IonCardContent>
 				<IonItemGroup>
-					<OrderDetailsItem title="ID" value={order.id} />
-					<OrderDetailsCustomer customer={order.customer} />
+					<OrderDetailsItem title="ID" value={'' + order.id} />
+					{/* <OrderDetailsCustomer customer={order.customer} /> */}
 					<OrderDetailsItem title="Factura" value={order.number} />
-					<OrderDetailsItem title="Fecha" value={handleDate(order.createdAt)} />
+					<OrderDetailsItem title="Fecha" value={handleDate('')} />
 					<OrderDetailsItem title="Cantidad Total" value={handleAmount(order.totalAmount, order.currency)} />
 
 					<OrderDetailsSelector

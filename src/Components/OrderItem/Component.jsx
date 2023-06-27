@@ -5,7 +5,6 @@ import './Component.scss';
 import { IonChip, IonCol, IonGrid, IonLabel, IonRow } from '@ionic/react';
 
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import numeral from 'numeral';
 import { severityMap } from './Constants';
 
@@ -15,12 +14,12 @@ export function OrderItem({ item }) {
 			<IonRow>
 				<IonCol size="1">
 					<IonGrid className="no-margin no-padding">
-						<IonRow className="no-margin no-padding">
+						{/* <IonRow className="no-margin no-padding">
 							<IonLabel className="center-align full-width">{format(item.createdAt, 'LLL').toUpperCase()}</IonLabel>
 						</IonRow>
 						<IonRow className="no-margin no-padding">
 							<IonLabel className="center-align full-width">{format(item.createdAt, 'd').toUpperCase()}</IonLabel>
-						</IonRow>
+						</IonRow> */}
 					</IonGrid>
 				</IonCol>
 				<IonCol size="9.5">
