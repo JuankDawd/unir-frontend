@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { IonButton, IonInput, IonLabel, IonSelect, IonSelectOption, IonIcon, IonImg } from '@ionic/react';
 import { categoryOptions } from '../../Constants/products';
 import { cameraOutline } from 'ionicons/icons';
 import './Component.scss';
 
-const CreateProductForm = () => {
+const EditProductForm = ({productId}) => {
+
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [image, setImage] = useState(null);
+  const [product, setProduct] = useState({});
+
+  const handleEdit = async (item) => {
+    try {
+      const response = await axios.patch(`${API_URL}ms-inventory-products/product/${item.id}`, {
+      });
+      setProduct(response.data);
+      console.log('Ítem editado:', response.data);
+    } catch (error) {
+      console.error('Error al editar el ítem:', error);
+    }
+  };
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
 
-  
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -26,6 +40,21 @@ const CreateProductForm = () => {
       reader.readAsDataURL(file);
     }
   };
+
+
+    useEffect(() => {
+        var url = window.location.href;
+        var number = url.match(/\d+/)[0];
+        try {
+            const response = axios.patch(`${API_URL}ms-inventory-products/product/${number}`, {
+            });
+            setProduct(response.data);
+            console.log('Ítem editado:', response.data);
+          } catch (error) {
+            console.error('Error al editar el ítem:', error);
+          }
+  }, [])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +108,7 @@ const CreateProductForm = () => {
           required
         ></IonInput>
       </IonLabel>
-      
+
       <div style={{ marginBottom: '1rem' }}>
       <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} id="image-upload" />
       <label htmlFor="image-upload">
@@ -95,5 +124,3 @@ const CreateProductForm = () => {
     </form>
   );
 };
-
-export default CreateProductForm;

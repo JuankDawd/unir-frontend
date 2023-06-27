@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { IonContent, IonGrid, IonRow, IonCol, IonButton, IonIcon, IonSearchbar } from '@ionic/react';
 import { subDays, subHours } from 'date-fns';
 import { productApi, categoryOptions, statusOptions, stockOptions } from '../../Constants/products';
-import { pencilOutline } from 'ionicons/icons';
+import { pencilOutline, trash } from 'ionicons/icons';
 import './Component.scss';
 
 const now = new Date();
@@ -16,6 +17,19 @@ const ProductsList = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [selectedStock, setSelectedStock] = useState('all');
+  const API_URL = process.env.API_URL;
+
+  const handleDelete = async (item) => {
+    // Aquí debes implementar la lógica para realizar la eliminación del ítem
+    // utilizando el método DELETE de tu API con Axios
+    try {
+      await axios.delete(`${API_URL}ms-inventory-products/product/${item.id}`);
+      console.log('Ítem eliminado:', item);
+    } catch (error) {
+      console.error('Error al eliminar el ítem:', error);
+    }
+  };
+
 
   useEffect(() => {
     fetchData();
@@ -58,6 +72,10 @@ const ProductsList = () => {
 
   const goToNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handleEditClick = (objectId) => {
+    ms-inventory-products/product/5
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -158,8 +176,11 @@ const ProductsList = () => {
                     <td>{product.currency}{product.price.toFixed(2)}</td>
                     <td>{product.quantity}</td>
                     <td>
-                      <IonButton color="primary" fill="clear">
+                      <IonButton color="primary" fill="clear" routerLink='/product/edit' onClick={() => handleEditClick(product)}>
                         <IonIcon icon={pencilOutline} />
+                      </IonButton>
+                      <IonButton color="primary" fill="clear" onClick={() => handleDelete(product)}>
+                        <IonIcon icon={trash} />
                       </IonButton>
                     </td>
                   </tr>
@@ -177,7 +198,7 @@ const ProductsList = () => {
                 onClick={goToPreviousPage}
                 disabled={currentPage === 1}
               >
-                Previous
+                Anterior
               </IonButton>
               <IonButton
                 color="primary"
@@ -185,7 +206,7 @@ const ProductsList = () => {
                 onClick={goToNextPage}
                 disabled={currentItems.length < itemsPerPage}
               >
-                Next
+                Siguiente
               </IonButton>
             </div>
           </IonCol>

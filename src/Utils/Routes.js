@@ -1,8 +1,6 @@
 import { Create } from '@pages/Product/Create';
 import { Customer } from '@pages/Customer';
 import { Edit } from '@pages/Customer/Edit';
-import { Home } from '@pages/Home';
-import { Login } from '@pages/LogIn';
 import { Logistic } from '@pages/Logistic';
 import { Order } from '@pages/Order';
 import { Overview } from '@pages/Overview';
