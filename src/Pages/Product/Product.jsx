@@ -17,11 +17,6 @@ const Product = () => {
 	const navigate = useNavigate();
 	const goTo = () => navigate(PATHS.PRODUCT_CREATE);
 	return (
-<<<<<<< HEAD
-		<PageWrapper title="Home">
-			<IonLabel>Productos</IonLabel>
-			<ProductsList/>
-=======
 		<PageWrapper title="Productos">
 			<IonCard>
 				<ProductHeader
@@ -46,7 +41,6 @@ const Product = () => {
 					<IonIcon icon={add}></IonIcon>
 				</IonFabButton>
 			</IonFab>
->>>>>>> origin/dev
 		</PageWrapper>
 	);
 };

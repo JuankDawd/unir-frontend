@@ -1,14 +1,12 @@
-version: '3'
+version: '4'
 services:
   next:
-    # Permitimos que el cada vez que se cambie el código dentro nuestro proyecto el contenedor
-    # tambien se actualice
     restart: always
     build: .
-    expose: 
-      - 3000
+    expose:
+      - 5173
     ports:
-      - '3000:3000'
+      - '3000:5173'
     container_name: web-inventory
     stdin_open: true
     command: npm run dev

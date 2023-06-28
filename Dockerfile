@@ -1,8 +1,5 @@
-# Dockerfile versión 3
+FROM node:16
 
-FROM node:18
-
-# Dirección de la carpeta donde se guardará nuestro código
 WORKDIR /usr/src/inventory/
 
 COPY package*.json ./
@@ -10,3 +7,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+# Exponer el puerto 3000
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

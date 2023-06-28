@@ -7,17 +7,11 @@ import { useState } from 'react';
 const Customer = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	return (
-<<<<<<< HEAD
-		<PageWrapper title="Home">
-			<IonLabel>Clientes</IonLabel>
-			<CustomerList/>
-=======
 		<PageWrapper title="Clientes">
 			<IonCard>
 				<CustomerHeader searchTerm={searchTerm} setSearchTerm={(x) => setSearchTerm(x)} />
 				<CustomerList searchTerm={searchTerm} />
 			</IonCard>
->>>>>>> origin/dev
 		</PageWrapper>
 	);
 };
