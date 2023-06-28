@@ -4,11 +4,11 @@
 		"paths": {
 			"@pages/*": ["./Pages/*"],
 			"@components/*": ["./Components/*"],
-			"@utils/*": ["./Utils/*"],
 			"@assets/*": ["./Utils/assets/*"],
 			"@api/*": ["./Utils/API/*"],
 			"@services/*": ["./Utils/services/*"],
-			"@style/*": ["./Utils/Style/*"]
+			"@style/*": ["./Utils/Style/*"],
+			"@utils/*": ["./Utils/*"]
 		}
 	},
 	"include": ["src"]

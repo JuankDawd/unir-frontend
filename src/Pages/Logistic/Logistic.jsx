@@ -4,13 +4,15 @@ import { OrderCards, ReviewCards } from './Constants';
 import { OrderCard } from '@components/OrderCard/Component';
 import { PageWrapper } from '@components/PageWrapper/Component';
 import { ReviewCard } from '@components/ReviewCard/Component';
+import useLogisticSearch from '@utils/hooks/useLogisticSearch';
 
 const Logistic = () => {
+	const { data } = useLogisticSearch({});
 	return (
 		<PageWrapper title="Logistica">
 			<IonGrid className="no-padding">
 				<IonRow>
-					{OrderCards.map((card, key) => {
+					{data.map((card, key) => {
 						return (
 							<IonCol
 								key={key}
@@ -22,7 +24,7 @@ const Logistic = () => {
 								sizeXl="3"
 								className="no-padding"
 							>
-								<OrderCard Amount={card.Amount} Message={card.Message} Icon={card.Icon} />
+								<OrderCard Amount={card.quantity} Message={card.status} Icon={OrderCards[card.status]} />
 							</IonCol>
 						);
 					})}

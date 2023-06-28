@@ -12,7 +12,7 @@ export function InputField({ label = '', placeholder = '', ...props }) {
 	const className = fieldState.error?.message ? '-error' : '';
 	return (
 		<Fragment>
-			<IonLabel className="label-title" htmlFor={props.name}>
+			<IonLabel htmlFor={props.name} className="label-title">
 				{label}
 			</IonLabel>
 

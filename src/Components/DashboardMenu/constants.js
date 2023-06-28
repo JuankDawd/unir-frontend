@@ -39,7 +39,7 @@ export const Sections = [
 			},
 			{
 				title: 'Logistica',
-				path: '/logistic',
+				path: '/logistics',
 				icon: mapOutline,
 				subItems: '',
 			},
@@ -49,8 +49,8 @@ export const Sections = [
 		title: 'Gestión',
 		items: [
 			{
-				title: 'Customer',
-				path: '/customer',
+				title: 'Clientes',
+				path: '/customers',
 				icon: manOutline,
 				subItems: [
 					{
@@ -67,7 +67,7 @@ export const Sections = [
 			},
 			{
 				title: 'Productos',
-				path: '/product',
+				path: '/products',
 				icon: bagOutline,
 				subItems: [
 					{
@@ -85,7 +85,7 @@ export const Sections = [
 			},
 			{
 				title: 'Pedidos',
-				path: '/order',
+				path: '/orders',
 				icon: cartOutline,
 				subItems: '',
 

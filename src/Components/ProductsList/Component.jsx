@@ -1,219 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { IonContent, IonGrid, IonRow, IonCol, IonButton, IonIcon, IonSearchbar } from '@ionic/react';
-import { subDays, subHours } from 'date-fns';
-import { productApi, categoryOptions, statusOptions, stockOptions } from '../../Constants/products';
-import { pencilOutline, trash } from 'ionicons/icons';
 import './Component.scss';
 
-const now = new Date();
+import { IonButton, IonButtons, IonCardContent } from '@ionic/react';
+import { useEffect, useState } from 'react';
 
-const ProductsList = () => {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('');
-  const [selectedStock, setSelectedStock] = useState('all');
-  const API_URL = process.env.API_URL;
+import { ProductTable } from '@components/ProductTable/Component';
+import PropTypes from 'prop-types';
+import useProductSearch from '@utils/hooks/useProductSearch';
 
-  const handleDelete = async (item) => {
-    // Aquí debes implementar la lógica para realizar la eliminación del ítem
-    // utilizando el método DELETE de tu API con Axios
-    try {
-      await axios.delete(`${API_URL}ms-inventory-products/product/${item.id}`);
-      console.log('Ítem eliminado:', item);
-    } catch (error) {
-      console.error('Error al eliminar el ítem:', error);
-    }
-  };
+export function ProductsList({ searchTerm, selectedCategory, selectedStatus, selectedStock }) {
+	const [filteredData, setFilteredData] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [itemsPerPage] = useState(5);
 
+	const { data } = useProductSearch({});
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+	const goToPreviousPage = () => {
+		setCurrentPage((prevPage) => prevPage - 1);
+	};
 
-  useEffect(() => {
-    filterData();
-  }, [searchTerm, selectedCategory, selectedStatus, selectedStock, data]);
+	const goToNextPage = () => {
+		setCurrentPage((prevPage) => prevPage + 1);
+	};
 
-  const fetchData = async () => {
-    try {
-      const products = await productApi.getProducts();
-      setData(products);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+	useEffect(() => {
+		const filterData = () => {
+			// eslint-disable-next-line no-console
 
-  const filterData = () => {
-    const filtered = data.filter((product) => {
-      const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory ? product.category === selectedCategory : true;
-      const matchesStatus = selectedStatus ? product.status === selectedStatus : true;
-      const matchesStock =
-        selectedStock === 'available'
-          ? product.inStock
-          : selectedStock === 'outOfStock'
-          ? !product.inStock
-          : true;
+			const filtered = data.filter((product) => {
+				const productName = product.name.toLowerCase();
+				const matchesSearchTerm = productName.includes(searchTerm.toLowerCase());
+				const matchesCategory = selectedCategory === 'all' ? true : product.category === selectedCategory;
+				const matchesStatus = selectedStatus === 'all' ? true : product.status === selectedStatus;
+				const matchesStock =
+					selectedStock === 'available' ? product.inStock : selectedStock === 'outOfStock' ? !product.inStock : true;
 
-      return matchesSearchTerm && matchesCategory && matchesStatus && matchesStock;
-    });
+				return matchesSearchTerm && matchesCategory && matchesStatus && matchesStock;
+			});
 
-    setFilteredData(filtered);
-  };
+			setFilteredData(filtered);
+		};
 
-  const goToPreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
+		filterData();
+	}, [searchTerm, selectedCategory, selectedStatus, selectedStock, data]);
 
-  const goToNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
+	const indexOfLastItem = currentPage * itemsPerPage;
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+	const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleEditClick = (objectId) => {
-    ms-inventory-products/product/5
-  };
+	return (
+		<IonCardContent>
+			<ProductTable items={currentItems} />
+			<IonButtons>
+				<IonButton onClick={goToPreviousPage} className="pagination-button" disabled={currentPage === 1}>
+					Previous
+				</IonButton>
+				<IonButton className="pagination-button" onClick={goToNextPage} disabled={currentItems.length < itemsPerPage}>
+					Next
+				</IonButton>
+			</IonButtons>
+		</IonCardContent>
+	);
+}
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-
-  return (
-    <IonContent>
-      <IonGrid>
-      <IonRow>
-  <IonCol>
-  </IonCol>
-  <IonCol>
-    <IonButton routerLink="/product/create" expand="full">Crear Nuevo Producto</IonButton>
-  </IonCol>
-</IonRow>
-  <IonRow>
-    <IonCol>
-      <IonSearchbar
-        value={searchTerm}
-        onIonChange={(e) => setSearchTerm(e.detail.value)}
-        placeholder="Buscar"
-      ></IonSearchbar>
-    </IonCol>
-  </IonRow>
-  <IonRow>
-    <IonCol>
-      <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-        <option value="">All Categories</option>
-        {categoryOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </IonCol>
-    <IonCol>
-      <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
-        <option value="">All Statuses</option>
-        {statusOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </IonCol>
-    <IonCol>
-      <select value={selectedStock} onChange={(e) => setSelectedStock(e.target.value)}>
-        {stockOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </IonCol>
-  </IonRow>
-  <IonRow>
-    <IonCol>
-      <table className="table">
-        {/* Rest of the table code */}
-      </table>
-    </IonCol>
-  </IonRow>
-  <IonRow>
-    <IonCol>
-      <div className="pagination">
-        {/* Pagination buttons */}
-      </div>
-    </IonCol>
-  </IonRow>
-        <IonRow>
-          <IonCol>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Imagen</th>
-                  <th>Nombre</th>
-                  <th>Categoría</th>
-                  <th>Estado</th>
-                  <th>Precio</th>
-                  <th>Cantidad</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentItems.map((product) => (
-                  <tr key={product.id}>
-                    <td>
-                      {product.image ? (
-                        <img src={product.image} alt={product.name} />
-                      ) : (
-                        <span>No image available</span>
-                      )}
-                    </td>
-                    <td>{product.name}</td>
-                    <td>{product.category}</td>
-                    <td>{product.status}</td>
-                    <td>{product.currency}{product.price.toFixed(2)}</td>
-                    <td>{product.quantity}</td>
-                    <td>
-                      <IonButton color="primary" fill="clear" routerLink='/product/edit' onClick={() => handleEditClick(product)}>
-                        <IonIcon icon={pencilOutline} />
-                      </IonButton>
-                      <IonButton color="primary" fill="clear" onClick={() => handleDelete(product)}>
-                        <IonIcon icon={trash} />
-                      </IonButton>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol>
-            <div className="pagination">
-              <IonButton
-                color="primary"
-                fill="outline"
-                onClick={goToPreviousPage}
-                disabled={currentPage === 1}
-              >
-                Anterior
-              </IonButton>
-              <IonButton
-                color="primary"
-                fill="outline"
-                onClick={goToNextPage}
-                disabled={currentItems.length < itemsPerPage}
-              >
-                Siguiente
-              </IonButton>
-            </div>
-          </IonCol>
-        </IonRow>
-      </IonGrid>
-    </IonContent>
-  );
+ProductsList.propTypes = {
+	searchTerm: PropTypes.string,
+	selectedCategory: PropTypes.string,
+	selectedStatus: PropTypes.string,
+	selectedStock: PropTypes.string,
 };
-
-export default ProductsList;

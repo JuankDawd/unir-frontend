@@ -1,22 +1,37 @@
 import { useEffect, useState } from 'react';
 
-import { orders as mockedOrders } from '@pages/Order/Constants';
-
-export default ({ status }) => {
-	const [orders, setOrders] = useState([]);
+export default ({ status, selector, orders }) => {
+	const [ordersFiltered, setOrdersFiltered] = useState(orders);
 
 	useEffect(() => {
-		const loadOrders = () => {
+		const filterOrdersByStatus = () => {
+			// eslint-disable-next-line no-console
 			if (status === 'all') {
-				setOrders([...mockedOrders]);
+				setOrdersFiltered([...orders]);
 			} else {
-				const filteredOrders = mockedOrders.filter((order) => order.status === status);
-				setOrders([...filteredOrders]);
+				const filteredOrders = orders.filter((order) => order.status === status);
+				setOrdersFiltered([...filteredOrders]);
 			}
 		};
+		if (orders !== undefined) {
+			filterOrdersByStatus();
+		}
+	}, [orders, status]);
 
-		loadOrders();
-	}, [status]);
+	useEffect(() => {
+		const filterOrderBySelector = () => {
+			if (selector === 'newest') {
+				const filteredOrders = orders.sort((a, b) => b.createdAt - a.createdAt);
+				setOrdersFiltered([...filteredOrders]);
+			} else {
+				const filteredOrders = orders.sort((a, b) => a.createdAt - b.createdAt);
+				setOrdersFiltered([...filteredOrders]);
+			}
+		};
+		if (orders !== undefined) {
+			filterOrderBySelector();
+		}
+	}, [selector, orders]);
 
-	return { orders };
+	return { ordersFiltered };
 };
