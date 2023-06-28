@@ -20,6 +20,7 @@ export const PATHS = {
 };
 
 // This Array contains all the Routes for the App
+
 export const ROUTES = [
 	{
 		title: 'overview',

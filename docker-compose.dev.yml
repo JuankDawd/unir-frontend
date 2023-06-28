@@ -1,0 +1,15 @@
+version: '4'
+services:
+  next:
+    restart: always
+    build: .
+    expose:
+      - 5173
+    ports:
+      - '3000:5173'
+    container_name: web-inventory
+    stdin_open: true
+    command: npm run dev
+    volumes:
+      - ./:/usr/src/inventory
+      - /usr/src/inventory/node_modules

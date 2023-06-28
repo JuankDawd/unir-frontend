@@ -51,6 +51,6 @@ const Logistic = () => {
 			</IonCard>
 		</PageWrapper>
 	);
-};
+};	
 
 export default Logistic;
