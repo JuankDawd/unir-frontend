@@ -16,4 +16,11 @@ export default defineConfig({
 			'@style': path.resolve(__dirname, 'src/Utils/Style'),
 		},
 	},
+	server: {
+		watch: {
+			usePolling: true,
+		  },
+		host: true,
+		port: 5173,
+	  }
 });
